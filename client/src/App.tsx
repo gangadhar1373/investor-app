@@ -4,7 +4,11 @@ import InvestorForm from './components/InvestorForm';
 function App() {
   return (
     <>
-      <h1>Investor information form</h1>
+      <div className='app-content'>
+        <h2>Investor Form</h2>
+        <p>Please fill out the form below:</p>
+        <p>All fields are required.</p>
+      </div>
       <InvestorForm />
     </>
   );

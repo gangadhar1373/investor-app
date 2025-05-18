@@ -1,11 +1,12 @@
 import React from 'react';
+import './InvestorForm.css';
 
 const InvestorForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
   return (
-    <div>
+    <div className='investor-form-container'>
       <form onSubmit={handleSubmit}>
         <div className='form-group'>
           <label htmlFor='firstName'>First Name</label>
