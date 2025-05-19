@@ -7,10 +7,9 @@ const InvestorForm = () => {
     lastName: '',
     dob: '',
     phone: '',
-    streetAddress: '',
+    address: '',
     state: '',
     zip: '',
-    file: null,
   });
   const [file, setFile] = useState<File | null>(null);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +17,7 @@ const InvestorForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) return alert('File is required');
 
@@ -29,9 +28,31 @@ const InvestorForm = () => {
       }
     });
     data.append('file', file);
-
-    console.log('Form data submitted:');
-    console.log(data);
+    try {
+      const res = await fetch('http://localhost:3000/api/investors', {
+        method: 'POST',
+        body: data,
+      });
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await res.json();
+      console.log('Form submitted successfully:', result);
+      alert('Form submitted successfully');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        dob: '',
+        phone: '',
+        address: '',
+        state: '',
+        zip: '',
+      });
+      setFile(null);
+    } catch (error) {
+      console.error('Error sending data to API', error);
+      alert('Form submission failed');
+    }
   };
   return (
     <div className='investor-form-container'>
@@ -83,12 +104,12 @@ const InvestorForm = () => {
         </div>
 
         <div className='form-group'>
-          <label htmlFor='streetAddress'>Street Address</label>
+          <label htmlFor='address'>Street Address</label>
           <input
-            name='streetAddress'
-            id='streetAddress'
+            name='address'
+            id='address'
             required
-            value={formData.streetAddress}
+            value={formData.address}
             onChange={handleChange}
           />
         </div>

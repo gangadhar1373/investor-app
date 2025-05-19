@@ -6,6 +6,6 @@ export const pool = new Pool({
   host: 'localhost',
   database: 'investor_db',
   // use your db user password
-  password: 'Mgc@1373',
+  password: 'your_password',
   port: 5432,
 });
