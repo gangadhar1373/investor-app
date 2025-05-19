@@ -10,7 +10,8 @@ PERN stack app (PostgreSQL, Express, React, Vite, Node, TS)
 
 ## Setup Instructions
 
-1. Close the repository
+1. Clone the repository `git clone https://github.com/gangadhar1373/investor-app.git`
+
 2. Install dependencies in both client and server
 
    ```bash
